@@ -1,285 +1,226 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vestidos para ceremonias y eventos — Isabel Duque</title>
+
+  <!-- Google Fonts: Playfair Display (display) + Montserrat (texto) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --font-display: 'Playfair Display', serif;
       --font-text: 'Montserrat', sans-serif;
-      --color-primary: #4B0082; /* indigo */
+      --color-primary: #6a0dad; /* púrpura elegante */
       --color-bg: #fafafa;
-      --color-bg-section: #fff;
-      --color-text: #222;
-      --radius: .5rem;
+      --color-muted: #555;
     }
+
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
+      margin:0;
       font-family: var(--font-text);
       background: var(--color-bg);
-      color: var(--color-text);
+      color: #222;
       line-height: 1.6;
     }
     a { color: var(--color-primary); text-decoration: none; }
-    a:focus-visible, button:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+    a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 
     header {
-      position: sticky;
-      top: 0;
-      background: var(--color-bg);
-      z-index: 10;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: .5rem 1rem;
-    }
-    .nav__logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-primary); }
-    .nav__menu { display: none; }
-    .nav__list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 1.5rem;
-    }
-    .nav__link { font-weight: 500; }
-    .nav__toggle {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .nav__list { flex-direction: column; gap: .5rem; }
-      .nav__menu { display: block; }
-      .nav__list { display: none; }
-      .nav__list.active { display: flex; }
-    }
-
-    .hero {
       position: relative;
-      min-height: 70vh;
-      background: url('https://images.unsplash.com/photo-1520975923315-0c5c2c6c5c5c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      background: url('assets/hero.jpg') center/cover no-repeat;
       color: #fff;
+      text-align: center;
+      padding: 4rem 1rem;
     }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+    header::before {
+      content:"";
+      position:absolute; inset:0;
       background: rgba(0,0,0,0.4);
     }
-    .hero__content {
-      position: relative;
-      max-width: 800px;
-      padding: 2rem;
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      margin: 0 0 .5rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      margin: 0 0 1.5rem;
-    }
-    .hero .cta {
-      background: var(--color-primary);
-      color: #fff;
-      border: none;
-      padding: .75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: var(--radius);
-      cursor: pointer;
-    }
-    .hero .cta:focus-visible { outline: 3px solid #fff; }
+    header > * { position:relative; z-index:1; }
 
-    section {
-      padding: 4rem 1rem;
-      background: var(--color-bg-section);
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      margin:0;
     }
-    .section__title {
+    .tagline {
+      font-size: 1.2rem;
+      margin-top: .5rem;
+    }
+
+    nav {
+      display:flex;
+      justify-content:center;
+      gap:1.5rem;
+      background:#fff;
+      padding:.5rem 1rem;
+      box-shadow:0 2px 4px rgba(0,0,0,.1);
+      position:sticky; top:0; z-index:10;
+    }
+    nav a {
+      font-weight:500;
+      padding:.3rem .6rem;
+    }
+
+    main { padding:2rem 1rem; max-width:1200px; margin:auto; }
+
+    section { margin-bottom:4rem; }
+    .section-title {
       font-family: var(--font-display);
       font-size: 2rem;
-      text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom:1rem;
       color: var(--color-primary);
+      text-align:center;
     }
-    .grid {
-      display: grid;
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    @media (min-width: 600px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 900px) {
-      .grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .card {
-      background: #fff;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,.1);
-      transition: transform .3s ease;
-    }
-    .card:hover, .card:focus-within { transform: translateY(-4px); }
-    .card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-    .card__info {
-      padding: 1rem;
-    }
-    .card__info h3 {
-      margin: 0 0 .5rem;
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      color: var(--color-primary);
-    }
-    .card__info p { margin: 0; }
 
-    .contact {
-      background: var(--color-primary);
-      color: #fff;
+    .gallery {
+      display:grid;
+      gap:1rem;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
     }
-    .contact a { color: #fff; text-decoration: underline; }
-    .contact__inner {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
+    .gallery img {
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:8px;
+      transition:transform .3s;
     }
-    .contact h2 { margin-bottom: .5rem; }
-    .contact p { margin: .3rem 0; }
+    .gallery img:hover {
+      transform:scale(1.03);
+    }
+
+    .contact-card {
+      background:#fff;
+      padding:1.5rem;
+      border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
+    }
+    .contact-card h3 {
+      margin-top:0;
+      color: var(--color-primary);
+    }
+    .contact-card p { margin:0.4rem 0; }
 
     footer {
-      background: #222;
-      color: #ccc;
-      text-align: center;
-      padding: 1rem;
-      font-size: .9rem;
+      text-align:center;
+      padding:1rem;
+      font-size:.9rem;
+      color:#777;
     }
 
+    /* Prefer reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition: none !important; }
+      *, *::before, *::after { transition:none !important; }
+    }
+
+    /* Mobile menu (JS toggles .open) */
+    .mobile-toggle {
+      display:none;
+      background:none;
+      border:none;
+      font-size:1.5rem;
+    }
+    @media (max-width:768px) {
+      nav { flex-direction:column; align-items:center; }
+      .mobile-toggle { display:block; }
+      nav ul { display:none; flex-direction:column; width:100%; }
+      nav.open ul { display:flex; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <nav class="nav" aria-label="Menú principal">
-    <a href="#" class="nav__logo">Isabel Duque</a>
-    <button class="nav__toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menú">
-      ☰
-    </button>
-    <ul class="nav__list" id="primary-menu">
-      <li><a class="nav__link" href="#coleccion">Colección</a></li>
-      <li><a class="nav__link" href="#contacto">Contacto</a></li>
-      <li><a class="nav__link" href="#sobre">Acerca de</a></li>
-    </ul>
-  </nav>
+  <h1>Vestidos para ceremonias y eventos</h1>
+  <p class="tagline">Diseño exclusivo de Isabel Duque – elegancia que perdura</p>
 </header>
 
+<nav id="nav">
+  <button class="mobile-toggle" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false">☰</button>
+  <ul>
+    <li><a href="#ceremonia">Ceremonia 2025</a></li>
+    <li><a href="#comunion-nina">Comunión Niña 2025</a></li>
+    <li><a href="#comunion-nino">Comunión Niño 2025</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#acerca-de">Acerca de</a></li>
+  </ul>
+</nav>
+
 <main>
-  <section class="hero" id="inicio">
-    <div class="hero__content">
-      <h1>Vestidos para ceremonias y eventos</h1>
-      <p>Descubre la elegancia de nuestras piezas para bodas, comuniones, graduaciones y cualquier ocasión especial.</p>
-      <button class="cta" onclick="document.getElementById('coleccion').scrollIntoView({behavior:'smooth'});">Ver la colección</button>
+  <!-- Ceremonia -->
+  <section id="ceremonia">
+    <h2 class="section-title">Colección Ceremonia 2025</h2>
+    <div class="gallery">
+      <img src="assets/ceremonia-1.jpg" alt="Vestido de ceremonia largo en tono azul marino">
+      <img src="assets/ceremonia-2.jpg" alt="Detalle de encaje y pedrería en vestido de boda">
+      <img src="assets/ceremonia-3.jpg" alt="Modelo con vestido de gala color vino">
+      <!-- Añade más imágenes según disponibilidad -->
     </div>
   </section>
 
-  <section id="coleccion">
-    <h2 class="section__title">Colección 2025</h2>
-    <div class="grid">
-      <!-- Ejemplo de tarjeta; sustituir src por fotos reales -->
-      <article class="card" tabindex="0">
-        <img src="https://images.unsplash.com/photo-1520975923315-0c5c2c6c5c5c?auto=format&fit=crop&w=600&q=80" alt="Vestido largo para ceremonia">
-        <div class="card__info">
-          <h3>Ceremonia</h3>
-          <p>Vestidos largos y sofisticados para la novia, madrinas y invitadas.</p>
-        </div>
-      </article>
-      <article class="card" tabindex="0">
-        <img src="https://images.unsplash.com/photo-1520975923315-0c5c2c6c5c5c?auto=format&fit=crop&w=600&q=80" alt="Vestido de comunión para niña">
-        <div class="card__info">
-          <h3>Comunión Niña</h3>
-          <p>Diseños delicados y modernos para la primera comunión de las pequeñas.</p>
-        </div>
-      </article>
-      <article class="card" tabindex="0">
-        <img src="https://images.unsplash.com/photo-1520975923315-0c5c2c6c5c5c?auto=format&fit=crop&w=600&q=80" alt="Vestido de comunión para niño">
-        <div class="card__info">
-          <h3>Comunión Niño</h3>
-          <p>Trajes elegantes y cómodos para los niños en su día especial.</p>
-        </div>
-      </article>
+  <!-- Comunión Niña -->
+  <section id="comunion-nina">
+    <h2 class="section-title">Comunión Niña 2025</h2>
+    <div class="gallery">
+      <img src="assets/comunion-nina-1.jpg" alt="Vestido blanco con bordado floral para niña">
+      <img src="assets/comunion-nina-2.jpg" alt="Pequeña con vestido rosa pastel y velo">
+      <img src="assets/comunion-nina-3.jpg" alt="Detalle de la falda con capas ligeras">
     </div>
   </section>
 
-  <section class="contact" id="contacto">
-    <div class="contact__inner">
-      <h2>Contacto</h2>
-      <p>Teléfono: <a href="tel:+34956668057">956 668 057</a></p>
-      <p>Email: <a href="mailto:info@isabelduque.es">info@isabelduque.es</a></p>
-      <p>También puedes escribir a <a href="mailto:usuario@dominio.com">usuario@dominio.com</a></p>
-      <p>Dirección: C/ General Primo de Rivera, 6, Algeciras</p>
-      <p>Horario: Lunes‑viernes 10:00‑14:00 / 17:00‑20:30 – Sábados 10:00‑14:00</p>
+  <!-- Comunión Niño -->
+  <section id="comunion-nino">
+    <h2 class="section-title">Comunión Niño 2025</h2>
+    <div class="gallery">
+      <img src="assets/comunion-nino-1.jpg" alt="Traje formal gris con camisa blanca para niño">
+      <img src="assets/comunion-nino-2.jpg" alt="Detalle del chaleco y corbata a juego">
+      <img src="assets/comunion-nino-3.jpg" alt="Niño sonriendo con traje completo">
     </div>
   </section>
 
-  <section id="sobre">
-    <h2 class="section__title">Acerca de Isabel Duque</h2>
-    <div class="grid">
-      <article class="card" tabindex="0">
-        <img src="https://images.unsplash.com/photo-1520975923315-0c5c2c6c5c5c?auto=format&fit=crop&w=600&q=80" alt="Isabel Duque en su taller">
-        <div class="card__info">
-          <p>Con más de 20 años de experiencia, Isabel Duque crea vestidos que combinan tradición y vanguardia, siempre con la máxima atención al detalle.</p>
-        </div>
-      </article>
+  <!-- Acerca de -->
+  <section id="acerca-de">
+    <h2 class="section-title">Sobre Isabel Duque</h2>
+    <p>Con más de una década de experiencia en la confección de vestidos para ceremonias, Isabel Duque combina tradición y modernidad para crear piezas únicas que realzan la personalidad de cada cliente. Cada modelo se elabora con telas de alta calidad y un acabado artesanal que garantiza comodidad y elegancia.</p>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <h2 class="section-title">Contacto</h2>
+    <div class="contact-card">
+      <h3>Visítanos</h3>
+      <p><strong>Dirección:</strong> C/ General Primo de Rivera, 6, Algeciras</p>
+      <p><strong>Horario:</strong> Lunes a viernes 10:00‑14:00 / 17:00‑20:30 – Sábados 10:00‑14:00</p>
+
+      <h3>Teléfono</h3>
+      <p>956 668 057</p>
+
+      <h3>Correo electrónico</h3>
+      <p>info@isabelduque.es</p>
+      <p>usuario@dominio.com</p>
+
+      <h3>Redes sociales</h3>
+      <p><a href="https://www.facebook.com/isabelduque" target="_blank" rel="noopener">Facebook</a></p>
     </div>
   </section>
 </main>
 
 <footer>
-  © 2026 Isabel Duque – Todos los derechos reservados.
+  © 2024 Isabel Duque – Todos los derechos reservados.
 </footer>
 
 <script>
   // Menú móvil accesible
-  const toggleBtn = document.querySelector('.nav__toggle');
-  const menu = document.getElementById('primary-menu');
-
-  toggleBtn.addEventListener('click', () => {
-    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', !expanded);
-    menu.classList.toggle('active');
-  });
-
-  // Cerrar menú al seleccionar enlace
-  document.querySelectorAll('.nav__link').forEach(link => {
-    link.addEventListener('click', () => {
-      if (menu.classList.contains('active')) {
-        menu.classList.remove('active');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
+  const nav = document.getElementById('nav');
+  const toggle = nav.querySelector('.mobile-toggle');
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !expanded);
+    nav.classList.toggle('open');
   });
 </script>
 </body>
