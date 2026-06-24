@@ -6,221 +6,173 @@
   <title>Vestidos para ceremonias y eventos — Isabel Duque</title>
 
   <!-- Google Fonts: Playfair Display (display) + Montserrat (texto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --font-display: 'Playfair Display', serif;
-      --font-text: 'Montserrat', sans-serif;
-      --color-primary: #6a0dad; /* púrpura elegante */
+      --color-primary: #6a0dad;   /* purple */
       --color-bg: #fafafa;
+      --color-text: #222;
       --color-muted: #555;
     }
-
     *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin:0;
-      font-family: var(--font-text);
-      background: var(--color-bg);
-      color: #222;
+      margin:0; font-family: 'Montserrat', sans-serif; background: var(--color-bg); color: var(--color-text);
       line-height: 1.6;
     }
     a { color: var(--color-primary); text-decoration: none; }
     a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 
     header {
-      position: relative;
-      background: url('assets/hero.jpg') center/cover no-repeat;
-      color: #fff;
-      text-align: center;
-      padding: 4rem 1rem;
+      display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem;
+      background: #fff; position:sticky; top:0; z-index:10; box-shadow:0 2px 4px rgba(0,0,0,.05);
     }
-    header::before {
-      content:"";
-      position:absolute; inset:0;
-      background: rgba(0,0,0,0.4);
-    }
-    header > * { position:relative; z-index:1; }
-
-    h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      margin:0;
-    }
-    .tagline {
-      font-size: 1.2rem;
-      margin-top: .5rem;
+    .logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--color-primary); }
+    nav ul { list-style:none; display:flex; gap:1.5rem; margin:0; padding:0; }
+    nav a { font-weight:500; }
+    .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; }
+    @media (max-width:768px){
+      nav ul { flex-direction:column; background:#fff; position:absolute; top:100%; left:0; right:0; display:none; }
+      nav ul.show { display:flex; }
+      .menu-toggle { display:block; }
     }
 
-    nav {
-      display:flex;
-      justify-content:center;
-      gap:1.5rem;
-      background:#fff;
-      padding:.5rem 1rem;
-      box-shadow:0 2px 4px rgba(0,0,0,.1);
-      position:sticky; top:0; z-index:10;
+    .hero {
+      position:relative; min-height:70vh; background:url('https://via.placeholder.com/1200x800?text=Isabel+Duque+Hero') center/cover no-repeat;
+      display:flex; align-items:center; justify-content:center; text-align:center; color:#fff;
     }
-    nav a {
-      font-weight:500;
-      padding:.3rem .6rem;
+    .hero::after{
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,.4);
     }
+    .hero-content {
+      position:relative; max-width:800px; padding:2rem;
+    }
+    .hero h1 { font-family:'Playfair Display',serif; font-size:2.8rem; margin:0 0 .5rem; }
+    .hero p { font-size:1.2rem; margin:0 0 1.5rem; }
+    .hero .cta { background:var(--color-primary); color:#fff; padding:.8rem 1.5rem; border:none; cursor:pointer; font-weight:700; border-radius:4px; }
+    .hero .cta:focus-visible { outline:2px solid #fff; }
 
-    main { padding:2rem 1rem; max-width:1200px; margin:auto; }
+    section { padding:4rem 2rem; max-width:1200px; margin:auto; }
+    .section-title { font-family:'Playfair Display',serif; font-size:2.2rem; margin-bottom:2rem; text-align:center; color:var(--color-primary); }
 
-    section { margin-bottom:4rem; }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      margin-bottom:1rem;
-      color: var(--color-primary);
-      text-align:center;
-    }
+    .grid { display:grid; gap:2rem; }
+    @media (min-width:600px){ .grid { grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); } }
 
-    .gallery {
-      display:grid;
-      gap:1rem;
-      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-    }
-    .gallery img {
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:8px;
-      transition:transform .3s;
-    }
-    .gallery img:hover {
-      transform:scale(1.03);
-    }
+    .card { background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.1); transition:transform .3s; }
+    .card:hover{ transform:scale(1.02); }
+    .card img { width:100%; height:auto; display:block; }
+    .card h3 { font-family:'Playfair Display',serif; font-size:1.4rem; margin:1rem; color:var(--color-primary); }
+    .card p { margin:0 1rem 1rem; color:var(--color-muted); }
 
-    .contact-card {
-      background:#fff;
-      padding:1.5rem;
-      border-radius:8px;
-      box-shadow:0 2px 6px rgba(0,0,0,.1);
-    }
-    .contact-card h3 {
-      margin-top:0;
-      color: var(--color-primary);
-    }
-    .contact-card p { margin:0.4rem 0; }
+    .contact-form { display:flex; flex-direction:column; gap:.8rem; max-width:600px; margin:auto; }
+    .contact-form input, .contact-form textarea { padding:.8rem; border:1px solid #ccc; border-radius:4px; font:inherit; }
+    .contact-form button { background:var(--color-primary); color:#fff; border:none; padding:.8rem 1.2rem; font-weight:700; cursor:pointer; border-radius:4px; }
+    .contact-form button:focus-visible { outline:2px solid #fff; }
 
-    footer {
-      text-align:center;
-      padding:1rem;
-      font-size:.9rem;
-      color:#777;
-    }
+    footer { background:#222; color:#ddd; text-align:center; padding:2rem; font-size:.9rem; }
+    footer a { color:#ddd; }
 
-    /* Prefer reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition:none !important; }
-    }
-
-    /* Mobile menu (JS toggles .open) */
-    .mobile-toggle {
-      display:none;
-      background:none;
-      border:none;
-      font-size:1.5rem;
-    }
-    @media (max-width:768px) {
-      nav { flex-direction:column; align-items:center; }
-      .mobile-toggle { display:block; }
-      nav ul { display:none; flex-direction:column; width:100%; }
-      nav.open ul { display:flex; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Vestidos para ceremonias y eventos</h1>
-  <p class="tagline">Diseño exclusivo de Isabel Duque – elegancia que perdura</p>
+  <div class="logo">Isabel Duque</div>
+  <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+  <nav>
+    <ul>
+      <li><a href="#coleccion">Colección</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#sobre">Acerca de</a></li>
+    </ul>
+  </nav>
 </header>
 
-<nav id="nav">
-  <button class="mobile-toggle" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false">☰</button>
-  <ul>
-    <li><a href="#ceremonia">Ceremonia 2025</a></li>
-    <li><a href="#comunion-nina">Comunión Niña 2025</a></li>
-    <li><a href="#comunion-nino">Comunión Niño 2025</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-    <li><a href="#acerca-de">Acerca de</a></li>
-  </ul>
-</nav>
-
 <main>
-  <!-- Ceremonia -->
-  <section id="ceremonia">
-    <h2 class="section-title">Colección Ceremonia 2025</h2>
-    <div class="gallery">
-      <img src="assets/ceremonia-1.jpg" alt="Vestido de ceremonia largo en tono azul marino">
-      <img src="assets/ceremonia-2.jpg" alt="Detalle de encaje y pedrería en vestido de boda">
-      <img src="assets/ceremonia-3.jpg" alt="Modelo con vestido de gala color vino">
-      <!-- Añade más imágenes según disponibilidad -->
+  <section class="hero" aria-label="Imagen principal">
+    <div class="hero-content">
+      <h1>Vestidos para ceremonias y eventos</h1>
+      <p>Diseños exclusivos de Isabel Duque para momentos inolvidables.</p>
+      <button class="cta" onclick="document.getElementById('coleccion').scrollIntoView({behavior:'smooth'});">Ver la colección</button>
     </div>
   </section>
 
-  <!-- Comunión Niña -->
-  <section id="comunion-nina">
-    <h2 class="section-title">Comunión Niña 2025</h2>
-    <div class="gallery">
-      <img src="assets/comunion-nina-1.jpg" alt="Vestido blanco con bordado floral para niña">
-      <img src="assets/comunion-nina-2.jpg" alt="Pequeña con vestido rosa pastel y velo">
-      <img src="assets/comunion-nina-3.jpg" alt="Detalle de la falda con capas ligeras">
+  <section id="coleccion">
+    <h2 class="section-title">Colección 2025</h2>
+    <div class="grid">
+      <article class="card">
+        <img src="https://via.placeholder.com/600x800?text=Ceremonia+2025" alt="Vestido de ceremonia 2025">
+        <h3>Ceremonia 2025</h3>
+        <p>Elegancia clásica con tejidos de alta calidad.</p>
+      </article>
+      <article class="card">
+        <img src="https://via.placeholder.com/600x800?text=Comunión+Niña+2025" alt="Vestido de comunión para niña 2025">
+        <h3>Comunión Niña 2025</h3>
+        <p>Detalles delicados y colores suaves para la primera comunión.</p>
+      </article>
+      <article class="card">
+        <img src="https://via.placeholder.com/600x800?text=Comunión+niño+2025" alt="Traje de comunión para niño 2025">
+        <h3>Comunión niño 2025</h3>
+        <p>Trajes a medida con acabados impecables.</p>
+      </article>
     </div>
   </section>
 
-  <!-- Comunión Niño -->
-  <section id="comunion-nino">
-    <h2 class="section-title">Comunión Niño 2025</h2>
-    <div class="gallery">
-      <img src="assets/comunion-nino-1.jpg" alt="Traje formal gris con camisa blanca para niño">
-      <img src="assets/comunion-nino-2.jpg" alt="Detalle del chaleco y corbata a juego">
-      <img src="assets/comunion-nino-3.jpg" alt="Niño sonriendo con traje completo">
-    </div>
-  </section>
-
-  <!-- Acerca de -->
-  <section id="acerca-de">
+  <section id="sobre">
     <h2 class="section-title">Sobre Isabel Duque</h2>
-    <p>Con más de una década de experiencia en la confección de vestidos para ceremonias, Isabel Duque combina tradición y modernidad para crear piezas únicas que realzan la personalidad de cada cliente. Cada modelo se elabora con telas de alta calidad y un acabado artesanal que garantiza comodidad y elegancia.</p>
+    <p style="max-width:800px;margin:auto;text-align:center;">
+      Isabel Duque es una diseñadora especializada en vestidos de ceremonia y eventos. Con más de una década de experiencia, combina tradición y modernidad para crear piezas únicas que realzan la personalidad de cada cliente.
+    </p>
   </section>
 
-  <!-- Contacto -->
   <section id="contacto">
     <h2 class="section-title">Contacto</h2>
-    <div class="contact-card">
-      <h3>Visítanos</h3>
-      <p><strong>Dirección:</strong> C/ General Primo de Rivera, 6, Algeciras</p>
-      <p><strong>Horario:</strong> Lunes a viernes 10:00‑14:00 / 17:00‑20:30 – Sábados 10:00‑14:00</p>
+    <form class="contact-form" action="#" method="POST">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required>
 
-      <h3>Teléfono</h3>
-      <p>956 668 057</p>
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" required>
 
-      <h3>Correo electrónico</h3>
-      <p>info@isabelduque.es</p>
-      <p>usuario@dominio.com</p>
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
 
-      <h3>Redes sociales</h3>
-      <p><a href="https://www.facebook.com/isabelduque" target="_blank" rel="noopener">Facebook</a></p>
-    </div>
+      <button type="submit">Enviar</button>
+    </form>
+
+    <p style="text-align:center;margin-top:2rem;">
+      <strong>Teléfono:</strong> 956 668 057 &nbsp;|&nbsp;
+      <strong>Email:</strong> <a href="mailto:info@isabelduque.es">info@isabelduque.es</a>, <a href="mailto:usuario@dominio.com">usuario@dominio.com</a><br>
+      <strong>Dirección:</strong> C/ General Primo de Rivera, 6, Algeciras
+    </p>
+
+    <p style="text-align:center;margin-top:1rem;">
+      <a href="https://www.facebook.com/isabelduque" target="_blank" rel="noopener">Facebook</a>
+    </p>
   </section>
 </main>
 
 <footer>
-  © 2024 Isabel Duque – Todos los derechos reservados.
+  © 2026 Isabel Duque. Todos los derechos reservados.
 </footer>
 
 <script>
-  // Menú móvil accesible
-  const nav = document.getElementById('nav');
-  const toggle = nav.querySelector('.mobile-toggle');
+  // Menú móvil
+  const toggle = document.querySelector('.menu-toggle');
+  const navUl = document.querySelector('nav ul');
+
   toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    navUl.classList.toggle('show');
+    const expanded = toggle.getAttribute('aria-expanded') === 'true' || false;
     toggle.setAttribute('aria-expanded', !expanded);
-    nav.classList.toggle('open');
+  });
+
+  // Cerrar menú al hacer clic en un enlace
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => navUl.classList.remove('show'));
   });
 </script>
 </body>
